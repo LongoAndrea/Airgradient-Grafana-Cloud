@@ -10,12 +10,14 @@ The code is a mix of the official [AirGradient](https://github.com/airgradienthq
    - https://github.com/grafana/arduino-prom-loki-transport
   -  https://github.com/grafana/arduino-snappy-proto
 
+In addition, the Airgradient library has been modified to display pm1 and pm10 values in addition to the pm2 it displays by default. This was added from this repo: [d3vilh/airgradient-improved](https://github.com/d3vilh/airgradient-improved)
+
 ## HOW TO USE
 
 First, follow the guide of [DIY air sensor](https://www.airgradient.com/diy/), then install the Grafana libraries and create an account ([see this guide](https://github.com/grafana/diy-iot))
-Then, you have to modify the PromLokiTransport library: go to the folder where Arduino saves the libraries, open the folder PromLokiTransport, open src and finally open the file PromLokiTransport.h . 
-Find the line -> ```#elif defined(ESP8266)``` and substitute ``` #error "ESP8266 is currently unsupported, it's proving too difficult to work around the 4k stack size limitation at the moment."``` with this
-``` #include "clients/ESP8266Client.h"```
+Then, you have to modify the PromLokiTransport library: go to the folder where Arduino saves the libraries, open the folder PromLokiTransport, open src and finally open the file PromLokiTransport.h .   
+Find the line -> ```#elif defined(ESP8266)``` and substitute ``` #error "ESP8266 is currently unsupported, it's proving too difficult to work around the 4k stack size limitation at the moment."``` with this  
+``` #include "clients/ESP8266Client.h"```  
 ```typedef ESP8266Client PromLokiTransport; ```
 
 Remember to fill all the gaps in the config.h with your credentials. For help, you can follow this simple tutorial: https://github.com/grafana/diy-iot
